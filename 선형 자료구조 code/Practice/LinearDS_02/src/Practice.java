@@ -43,6 +43,35 @@ class MyArray {
 
 
 //  배열에서 특정 데이터 삭제
+//    데이터를 삭제할때 들어온 데이터를 찾아서 삭제 해준다
+    public void removeData(int data) {
+        int targetIndex = -1;
+
+        // 들어온 데이터가 배열에 있는지 찾아본다.
+        for(int i=0; i<this.arr.length; i++) {
+            if(this.arr[i] == data) { // 데이터가 있으면
+                targetIndex = i;
+                break; // 더이상 찾을 필요 없으니까
+
+            }
+        }
+        // 찾은 데이터가 없으면
+        if(targetIndex == -1) {
+            System.out.println("해당 데이터가 없습니다.");
+        }else {
+            int [] arrDup = this.arr.clone(); // 기본 배열을 arrrDup에 복제
+            this.arr = new int[this.arr.length -1]; // 배열을 사이즈 하나 줄여서 다시 만들어준다.
+
+            for(int i=0; i<targetIndex; i++) { // 지우려고 하는 인덱스 위치 전까지
+                this.arr[i] = arrDup[i]; // 기존 배열을 다시 넣어주고
+            }
+
+            for(int i=targetIndex; i < this.arr.length; i++) { // 지우려고 하는 데이터는 빼고
+                this.arr[i] = arrDup[i + 1]; // 나머지 데이터만 새로 만들어준 배열에 들어간다.
+            }
+        }
+
+    }
 
 
 }
@@ -52,30 +81,30 @@ public class Practice {
 
 //      Test code
         int size = 5;
-//        MyArray myArray = new MyArray(size);
-//
-//        for (int i = 0; i < size; i++) {
-//            myArray.arr[i] = i + 1;
-//        }
-//        System.out.println(Arrays.toString(myArray.arr));   // [1, 2, 3, 4, 5]
-//
-//        myArray.arr[0] = 10;
-//        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 3, 4, 5]
-//
-//        myArray.insertData(2, 20);
-//        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 20, 3, 4, 5]
-//
-//        myArray.insertData(6, 60);
-//        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 20, 3, 4, 5, 60]
-//
-//        myArray.insertData(-1, 0);  // Index Error
-//
-//        myArray.removeData(4);
-//        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 20, 3, 5, 60]
-//
-//        myArray.removeData(5);
-//        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 20, 3, 60]
-//
-//        myArray.removeData(99); // 해당 데이터가 없습니다.
+        MyArray myArray = new MyArray(size);
+
+        for (int i = 0; i < size; i++) {
+            myArray.arr[i] = i + 1;
+        }
+        System.out.println(Arrays.toString(myArray.arr));   // [1, 2, 3, 4, 5]
+
+        myArray.arr[0] = 10;
+        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 3, 4, 5]
+
+        myArray.insertData(2, 20);
+        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 20, 3, 4, 5]
+
+        myArray.insertData(6, 60);
+        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 20, 3, 4, 5, 60]
+
+        myArray.insertData(-1, 0);  // Index Error
+
+        myArray.removeData(4);
+        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 20, 3, 5, 60]
+
+        myArray.removeData(5);
+        System.out.println(Arrays.toString(myArray.arr));   // [10, 2, 20, 3, 60]
+
+        myArray.removeData(99); // 해당 데이터가 없습니다.*/
     }
 }
